@@ -14,6 +14,11 @@ export const App = () => {
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+  const removeContact = id => {
+    setContacts(prevContacts =>
+      prevContacts.filter(contact => contact.id !== id)
+    );
+  };
 
   return (
     <div>
@@ -21,7 +26,7 @@ export const App = () => {
       <ContactForm contacts={contacts} addContact={addContact} />
       <h2>Contacts</h2>
       <Filter filterValue={filter} setFilterValue={setFilter} />
-      <ContactList contacts={filteredContacts} />
+      <ContactList contacts={filteredContacts} removeContact={removeContact} />
     </div>
   );
 };
