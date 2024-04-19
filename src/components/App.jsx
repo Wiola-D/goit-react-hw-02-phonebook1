@@ -1,16 +1,17 @@
+import { useState } from 'react';
+import { ContactForm } from './Phonebook';
+
 export const App = () => {
+  const [contacts, setContacts] = useState([]);
+
+  const addContact = event => {
+    setContacts(prevContacts => [...prevContacts, event]);
+  };
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      goit-react-hw-02-phonebook1
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm contacts={contacts} addContact={addContact} />
     </div>
   );
 };
