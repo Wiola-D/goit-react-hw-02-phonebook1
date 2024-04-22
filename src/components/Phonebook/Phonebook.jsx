@@ -3,11 +3,10 @@ import { useState } from 'react';
 
 export const ContactForm = ({ contacts, addContact }) => {
   const [nameValue, setNameValue] = useState('');
+  const [numberValue, setNumberValue] = useState('');
 
   const onSubmit = evt => {
     evt.preventDefault();
-    console.log(contacts, nameValue);
-    if (!nameValue.trim()) return;
 
     const isDuplicate = contacts.some(
       contact => contact.name.toUpperCase() === nameValue.toUpperCase()
@@ -17,10 +16,11 @@ export const ContactForm = ({ contacts, addContact }) => {
       alert(`${nameValue} is already in contacts!`);
       return;
     }
-    const newContact = { name: nameValue, id: nanoid() };
+    const newContact = { name: nameValue, number: numberValue, id: nanoid() };
     addContact(newContact);
 
     setNameValue('');
+    setNumberValue('');
   };
 
   return (
@@ -33,6 +33,17 @@ export const ContactForm = ({ contacts, addContact }) => {
           id="name"
           value={nameValue}
           onChange={e => setNameValue(e.target.value)}
+          required
+        />
+      </div>
+      <div className="container">
+        <label htmlFor="name">Number</label>
+        <input
+          type="text"
+          name="number"
+          id="number"
+          value={numberValue}
+          onChange={e => setNumberValue(e.target.value)}
           required
         />
       </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ContactForm } from './Phonebook';
-import { ContactList } from './ContactList';
-import { Filter } from './Filter';
+import { ContactForm } from './Phonebook/Phonebook';
+import { ContactList } from './ContactList/ContactList';
+import { Filter } from './Filter/Filter';
 
 export const App = () => {
   const [contacts, setContacts] = useState([]);
